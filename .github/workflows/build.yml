@@ -12,8 +12,8 @@ jobs:
         run: xcodegen generate
       - name: Build App
         run: |
-          xcodebuild -project MyMusicApp.xcodeproj \
-            -scheme MyMusicApp \
+          xcodebuild -project Demo.xcodeproj \
+            -scheme Demo \
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath build \
@@ -23,10 +23,10 @@ jobs:
       - name: Package IPA
         run: |
           mkdir -p Payload
-          cp -r build/Build/Products/Release-iphoneos/MyMusicApp.app Payload/
-          zip -r MyMusicApp.ipa Payload
+          cp -r build/Build/Products/Release-iphoneos/Demo.app Payload/
+          zip -r Demo.ipa Payload
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
-          name: MyMusicApp-IPA
-          path: MyMusicApp.ipa
+          name: Demo-IPA
+          path: Demo.ipa
